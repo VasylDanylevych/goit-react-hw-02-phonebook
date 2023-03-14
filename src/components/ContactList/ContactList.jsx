@@ -1,4 +1,6 @@
-import { List } from "./ContactList.style"
+import { List } from "./ContactList.style";
+import PropTypes from 'prop-types';
+
 
 
 export const ContactList = ({contacts, deleteContact}) => {
@@ -10,3 +12,14 @@ export const ContactList = ({contacts, deleteContact}) => {
         </List>
     )
 }
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      number: PropTypes.string,
+    })
+  ),
+  deleteContact: PropTypes.func,
+};
