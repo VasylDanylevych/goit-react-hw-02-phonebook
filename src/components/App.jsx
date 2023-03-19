@@ -5,30 +5,22 @@ import { ContactList } from "./ContactList/ContactList";
 
 class App extends Component {
   state = { 
-    contacts: [
-    {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-    {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-    {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-    {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-    ],
+    contacts: [],
     filter: "",
-    // name: "",
-    // number: "",
   } 
 
-  // handleChange = evt => {
-  //   const { name, number, value } = evt.target;
-  //   this.setState({ [name]: value, [number]: value });
-  // };
+  componentDidMount() {
+    if (localStorage.getItem("contactsList"))
+			this.setState({
+				contacts: JSON.parse(localStorage.getItem("contactsList")),
+			})
+  }
 
-  // handleSubmit = evt => {
-  //   evt.preventDefault();
-  //   const { contacts, name, number } = this.state;
-  //   const id = nanoid();
-  //   const newContact = {id, name, number}
-  //   const updateContact = [newContact, ...contacts];
-  //   this.setState({contacts:updateContact, name: "", number: ""})
-  // };
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts.length !== this.state.contacts.length) {
+      localStorage.setItem("contactsList", JSON.stringify(this.state.contacts))
+    };
+  }
 
   addContact = (newContact) => {
     const { contacts } = this.state;

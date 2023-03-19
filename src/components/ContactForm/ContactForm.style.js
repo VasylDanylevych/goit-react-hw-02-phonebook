@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const Form = styled.form`
     display: flex;
-    align-items: center;
+    width: 500px;
     gap: 15px;
+    flex-direction: column;
 
     & button {
         background-color: #99FFFF;
@@ -22,13 +23,15 @@ export const Form = styled.form`
     & label {
         font-size: 20px;
         font-weight: 600;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
     }
 `;
 
 export const Input = styled.input`
     height: 35px;
     padding-left: 20px;
-    margin-left: 5px;
     border-radius: 4px;
     font-size: 15px;
 `;
